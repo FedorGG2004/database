@@ -11,8 +11,8 @@ public:
     Database(){
         vector < vector <string> > tab (1000, vector <string> (1000));
 };
-    void get_titul(int line){
-            for(int j=0 ;j<6; j++){
+    void get_titul(int line, int column){
+            for(int j=0 ;j<column; j++){
                 cout<<tab[0][j];
                 int spaces=line-tab[0][j].length();
                     for(int k=0; k<spaces; k++){
@@ -20,9 +20,9 @@ public:
                 }
             }
     }
-    void show_tab(int line, int strok){
+    void show_tab(int line, int strok, int column){
         for(int i=0; i<strok; i++){
-            for(int j=0 ;j<6; j++){
+            for(int j=0 ;j<column; j++){
                 cout<<tab[i][j];
                 int spaces=line-tab[i][j].length();
                     for(int k=0; k<spaces; k++){
@@ -32,7 +32,7 @@ public:
         cout<<endl;
         }
     }
-    void create_new_line(){
+    void add_new_line(){
         vector<string> tmp;
         cout<<"input id: ";
         string word;
@@ -60,6 +60,29 @@ public:
         tab.pop_back();
         cout<<"line deleted";
     }
+    void add_new_column(int strok){
+        vector<string> tmp=tab[0];
+        cout<<"add name of column: ";
+        string word;
+        cin>>word;
+        tmp.push_back(word);
+        tab[0]=tmp;
+        for(int i=1; i<strok; i++){
+            vector<string> tmp=tab[i];
+            cin>>word;
+            tmp.push_back(word);
+            tab[i]=tmp;
+        }
+        cout<<"column added";
+    }
+    void delete_column(int strok){
+        for(int i=0; i<strok; i++){
+            vector<string> tmp=tab[i];
+            tmp.pop_back();
+            tab[i]=tmp;
+        }
+        cout<<"column deleted";
+    }
 };
 int main()
 {
@@ -67,6 +90,7 @@ int main()
     fin.open("students.txt");
 
     int strok=4;
+    int column=6;
     const int line = 15;
     Database database;
     string a;
@@ -74,7 +98,7 @@ int main()
     vector<string> vspom;
 
     for(int i=0; i<strok; i++){
-        for(int j=0 ;j<6; j++){
+        for(int j=0 ;j<column; j++){
             fin>>a;
             vspom.push_back(a);
         }
@@ -86,21 +110,29 @@ int main()
         string a;
         cin>>a;
         if(a=="help")
-            cout<<"commands: tab, titul, add, delete";
+            cout<<"commands: tab, titul, add_line, delete_line";
         if(a=="titul")
-            database.get_titul(line);
+            database.get_titul(line, column);
         if(a=="tab")
-            database.show_tab(line, strok);
-        if(a=="add"){
-            database.create_new_line();
+            database.show_tab(line, strok, column);
+        if(a=="add_line"){
+            database.add_new_line();
             strok++;
-            cout<<strok;
         }
-        if(a=="delete")
+        if(a=="delete_line"){
             database.delete_line();
+            strok--;
+        }
+        if(a=="add_column"){
+            database.add_new_column(strok);
+            column++;
+        }
+        if(a=="delete_column"){
+            database.delete_column(strok);
+            column--;
+        }
     }
 
     fin.close();
     return 0;
 }
-
