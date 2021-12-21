@@ -75,7 +75,7 @@ public:
         }
         cout<<"column added";
     }
-    void delete_column(int strok){
+    void delete_last_column(int strok){
         for(int i=0; i<strok; i++){
             vector<string> tmp=tab[i];
             tmp.pop_back();
@@ -84,6 +84,7 @@ public:
         cout<<"column deleted";
     }
 };
+
 int main()
 {
     ifstream fin;
@@ -110,7 +111,7 @@ int main()
         string a;
         cin>>a;
         if(a=="help"){
-            cout<<"commands: tab, titul, add_line, delete_line, add_column, delete_column";
+            cout<<"commands: tab, titul, add_line, delete_line, add_column, delete_last_column";
             cout<<endl;
         }
         if(a=="titul"){
@@ -136,8 +137,8 @@ int main()
             column++;
             cout<<endl;
         }
-        if(a=="delete_column"){
-            database.delete_column(strok);
+        if(a=="delete_last_column"){
+            database.delete_last_column(strok);
             column--;
             cout<<endl;
         }
