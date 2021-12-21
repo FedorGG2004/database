@@ -110,7 +110,7 @@ int main()
         string a;
         cin>>a;
         if(a=="help")
-            cout<<"commands: tab, titul, add_line, delete_line";
+            cout<<"commands: tab, titul, add_line, delete_line, add_column, delete_column";
         if(a=="titul")
             database.get_titul(line, column);
         if(a=="tab")
