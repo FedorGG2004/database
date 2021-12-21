@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -83,6 +84,22 @@ public:
         }
         cout<<"column deleted";
     }
+    void delete_column(int strok, string num){
+        int numl=atoi(num.c_str())-1;
+        for(int i=0; i<strok; i++){
+            vector<string> tmp=tab[i];
+            tmp.erase(tmp.begin() + numl);
+            tab[i]=tmp;
+        }
+        cout<<"column deleted";
+    }
+    void delete_line(string num){
+        int numl=atoi(num.c_str())-1;
+        vector<string> tmp=tab[numl];
+        tmp.pop_back();
+        tab[numl]=tmp;
+        cout<<"line deleted";
+    }
 };
 
 int main()
@@ -140,6 +157,22 @@ int main()
         if(a=="delete_last_column"){
             database.delete_last_column(strok);
             column--;
+            cout<<endl;
+        }
+        if(a=="delete_column"){
+            cout<<"number of column: ";
+            string num;
+            cin>>num;
+            database.delete_column(strok, num);
+            column--;
+            cout<<endl;
+        }
+        if(a=="delete_line"){
+            cout<<"number of line ";
+            string num;
+            cin>>num;
+            database.delete_line(num);
+            strok--;
             cout<<endl;
         }
     }
