@@ -56,7 +56,7 @@ public:
         tab.push_back(tmp);
         cout<<"Added Line";
     }
-    void delete_line(){
+    void delete_last_line(){
         tab.pop_back();
         cout<<"line deleted";
     }
@@ -111,7 +111,7 @@ int main()
         string a;
         cin>>a;
         if(a=="help"){
-            cout<<"commands: tab, titul, add_line, delete_line, add_column, delete_last_column";
+            cout<<"commands: tab, titul, add_line, delete_last_line, add_column, delete_last_column";
             cout<<endl;
         }
         if(a=="titul"){
@@ -127,8 +127,8 @@ int main()
             strok++;
             cout<<endl;
         }
-        if(a=="delete_line"){
-            database.delete_line();
+        if(a=="delete_last_line"){
+            database.delete_last_line();
             strok--;
             cout<<endl;
         }
