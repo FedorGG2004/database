@@ -109,27 +109,37 @@ int main()
     while(true){
         string a;
         cin>>a;
-        if(a=="help")
+        if(a=="help"){
             cout<<"commands: tab, titul, add_line, delete_line, add_column, delete_column";
-        if(a=="titul")
+            cout<<endl;
+        }
+        if(a=="titul"){
             database.get_titul(line, column);
-        if(a=="tab")
+            cout<<endl;
+        }
+        if(a=="tab"){
             database.show_tab(line, strok, column);
+            cout<<endl;
+        }
         if(a=="add_line"){
             database.add_new_line();
             strok++;
+            cout<<endl;
         }
         if(a=="delete_line"){
             database.delete_line();
             strok--;
+            cout<<endl;
         }
         if(a=="add_column"){
             database.add_new_column(strok);
             column++;
+            cout<<endl;
         }
         if(a=="delete_column"){
             database.delete_column(strok);
             column--;
+            cout<<endl;
         }
     }
 
